@@ -6,7 +6,7 @@ import java.io.*;
  * @author Olli-Kalle Sarlund
  * @version 1.0 2024/03/12
  */
-public class biljardivarausolio implements Serializable {
+public class Biljardivarausolio implements Serializable {
     /**
      * Pöydän numero kokonaislukuna.
      */
@@ -33,7 +33,7 @@ public class biljardivarausolio implements Serializable {
      * @param aika String varauksen aika
      * @param varaajanNimi String varaajan nimi
      */
-    public biljardivarausolio(int poytaNumero, String pvm, String aika, String varaajanNimi) {
+    public Biljardivarausolio(int poytaNumero, String pvm, String aika, String varaajanNimi) {
         this.poytaNumero = poytaNumero;
         this.pvm = pvm;
         this.aika = aika;
@@ -117,7 +117,7 @@ public class biljardivarausolio implements Serializable {
             FileOutputStream fstream = new FileOutputStream("C:/Users/o-k/Desktop/OhjelmointiJava/varaukset.txt");
             ObjectOutputStream outputFile = new ObjectOutputStream(fstream);
 
-            biljardivarausolio varaus1 = new biljardivarausolio(1, "2024-03-15", "16:30", "Olli");
+            Biljardivarausolio varaus1 = new Biljardivarausolio(1, "2024-03-15", "16:30", "Olli");
 
                 outputFile.writeObject(varaus1);
 

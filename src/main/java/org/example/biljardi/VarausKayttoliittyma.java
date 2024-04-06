@@ -99,7 +99,7 @@ public class VarausKayttoliittyma extends Application {
             String kellonaika = kellonaikaKentta.getText();
             String varaajanNimi = varaajanNimiKentta.getText();
 
-            biljardivarausolio varausolio = new biljardivarausolio(poydanNumero, paivamaara, kellonaika, varaajanNimi);
+            Biljardivarausolio varausolio = new Biljardivarausolio(poydanNumero, paivamaara, kellonaika, varaajanNimi);
             // Kirjoitetaan tiedostoon varaus
             try (BufferedWriter kirjoittaja = new BufferedWriter(new FileWriter("C:/Users/o-k/Desktop/OhjelmointiJava/varaukset.txt", true))) {
                 kirjoittaja.write(varausolio.getPoytaNumero() + ", " + varausolio.getPvm() + ", " + varausolio.getAika() + ", " + varausolio.getVaraajanNimi());
