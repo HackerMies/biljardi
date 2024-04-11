@@ -55,6 +55,10 @@ public class VarausKayttoliittyma extends Application {
      */
     Button varauslistaNappi = new Button("Näytä varaukset");
     /**
+     * Tiedoston luonnin tarkistus totuusarvo
+     */
+    boolean tiedostoLuotu = false;
+    /**
      * Ohjelmaikkunan käynnistyksen ja toiminnallisuuden määrittely
      */
     @Override
@@ -88,7 +92,7 @@ public class VarausKayttoliittyma extends Application {
         AnchorPane.setLeftAnchor(varausNappi, 90.0);
         AnchorPane.setTopAnchor(varauslistaNappi,420.0);
         AnchorPane.setLeftAnchor(varauslistaNappi, 300.0);
-        Paneeli.setStyle("-fx-background-image: url('file:c:/users/o-k/desktop/ohjelmointijava/biljardi/image/biljardipoyta.jpeg')");
+        Paneeli.setStyle("-fx-background-image: url('file:biljardipoyta.jpeg')");
 
         /**
          * Luodaan uusi varaus ja tallennetaan se tiedostoon.
@@ -100,14 +104,22 @@ public class VarausKayttoliittyma extends Application {
             String varaajanNimi = varaajanNimiKentta.getText();
 
             Biljardivarausolio varausolio = new Biljardivarausolio(poydanNumero, paivamaara, kellonaika, varaajanNimi);
-            // Kirjoitetaan tiedostoon varaus
-            try (BufferedWriter kirjoittaja = new BufferedWriter(new FileWriter("C:/Users/o-k/Desktop/OhjelmointiJava/biljardi/varaukset/varaukset1.txt", true))) {
+            // Luodaan varaukset tiedosto
+                    if (!tiedostoLuotu) {
+            File tiedostoTesti = new File("varaukset1.txt");
+                        try {
+                            tiedostoTesti.createNewFile();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }}
+                    // Kirjoitetaan tiedostoon
+                        try (BufferedWriter kirjoittaja = new BufferedWriter(new FileWriter("varaukset1.txt", true))) {
                 kirjoittaja.write(varausolio.getPoytaNumero() + ", " + varausolio.getPvm() + ", " + varausolio.getAika() + ", " + varausolio.getVaraajanNimi());
                 kirjoittaja.newLine();
             } catch (IOException e) {
                 System.out.println("Virhe tiedostoon kirjoittamisessa.");
             }
-
+                tiedostoLuotu = true;
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Varaus tallennettu");
             alert.setHeaderText("Biljardipöydän varaus on tallennettu onnistuneesti!");
@@ -122,7 +134,7 @@ public class VarausKayttoliittyma extends Application {
             laatikko.setStyle("-fx-border-color: black; -fx-padding: 50px;");
 
             // Luetaan tiedostosta varaukset
-            try (BufferedReader lukija = new BufferedReader(new FileReader("C:/Users/o-k/Desktop/OhjelmointiJava/biljardi/varaukset/varaukset1.txt"))) {
+            try (BufferedReader lukija = new BufferedReader(new FileReader("varaukset1.txt"))) {
                 String rivi1;
                 while ((rivi1 = lukija.readLine()) != null) {
                     String[] osat = rivi1.split(",");
