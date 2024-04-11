@@ -101,7 +101,7 @@ public class VarausKayttoliittyma extends Application {
 
             Biljardivarausolio varausolio = new Biljardivarausolio(poydanNumero, paivamaara, kellonaika, varaajanNimi);
             // Kirjoitetaan tiedostoon varaus
-            try (BufferedWriter kirjoittaja = new BufferedWriter(new FileWriter("C:/Users/o-k/Desktop/OhjelmointiJava/varaukset.txt", true))) {
+            try (BufferedWriter kirjoittaja = new BufferedWriter(new FileWriter("C:/Users/o-k/Desktop/OhjelmointiJava/biljardi/varaukset/varaukset1.txt", true))) {
                 kirjoittaja.write(varausolio.getPoytaNumero() + ", " + varausolio.getPvm() + ", " + varausolio.getAika() + ", " + varausolio.getVaraajanNimi());
                 kirjoittaja.newLine();
             } catch (IOException e) {
@@ -122,7 +122,7 @@ public class VarausKayttoliittyma extends Application {
             laatikko.setStyle("-fx-border-color: black; -fx-padding: 50px;");
 
             // Luetaan tiedostosta varaukset
-            try (BufferedReader lukija = new BufferedReader(new FileReader("C:/Users/o-k/Desktop/OhjelmointiJava/varaukset.txt"))) {
+            try (BufferedReader lukija = new BufferedReader(new FileReader("C:/Users/o-k/Desktop/OhjelmointiJava/biljardi/varaukset/varaukset1.txt"))) {
                 String rivi1;
                 while ((rivi1 = lukija.readLine()) != null) {
                     String[] osat = rivi1.split(",");
